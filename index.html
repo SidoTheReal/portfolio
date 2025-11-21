@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Name | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* Basic reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Layout */
+    header, section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    /* Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(15, 23, 42, 0.9);
+      border-bottom: 1px solid #1f2937;
+    }
+
+    nav .nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    nav .logo {
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+      gap: 2rem;
+      align-items: center;
+      padding-top: 5rem;
+    }
+
+    .hero-title {
+      font-size: 2.75rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      color: #38bdf8;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: #9ca3af;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid #38bdf8;
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .btn-primary {
+      background: #38bdf8;
+      color: #0f172a;
+      border-color: #38bdf8;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #e5e7eb;
+    }
+
+    .socials {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.95rem;
+      color: #9ca3af;
+    }
+
+    .hero-avatar {
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      border: 3px solid #38bdf8;
+      object-fit: cover;
+      margin-left: auto;
+      display: block;
+    }
+
+    /* Section headings */
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-bottom: 0.25rem;
+    }
+
+    h2.section-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* About */
+    .about-content {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2rem;
+    }
+
+    .about-box {
+      border: 1px solid #1f2937;
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      background: rgba(15, 23, 42, 0.7);
+      margin-bottom: 1rem;
+    }
+
+    .about-box h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* Generic grid cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      border-radius: 0.75rem;
+      border: 1px solid #1f2937;
+      padding: 1.25rem;
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .card h3 {
+      margin-bottom: 0.25rem;
+      font-size: 1.05rem;
+    }
+
+    .card span.small {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .card ul {
+      margin-top: 0.5rem;
+      padding-left: 1.1rem;
+      color: #9ca3af;
+      font-size: 0.9rem;
+    }
+
+    /* Skills */
+    .skills-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid #1f2937;
+      font-size: 0.8rem;
+      margin: 0.2rem;
+      color: #d1d5db;
+    }
+
+    /* Projects */
+    .project-links {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* Contact */
+    .contact-box {
+      max-width: 500px;
+      border-radius: 0.75rem;
+      border: 1px solid #1f2937;
+      padding: 1.5rem;
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem 3rem;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+      .hero-avatar {
+        margin: 0 auto;
+      }
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+      nav .nav-inner {
+        flex-direction: row;
+        gap: 1rem;
+      }
+      nav ul {
+        gap: 0.75rem;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">YOUR NAME</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO / INTRO -->
+  <header>
+    <div class="hero">
+      <div>
+        <p class="section-label">Hello, I'm</p>
+        <h1 class="hero-title">YOUR NAME</h1>
+        <div class="hero-subtitle">B.Sc. Cyber Security & Privacy Student</div>
+        <p>
+          I am an international student from Morocco studying Cyber Security & Privacy at Hochschule Bonn-Rhein-Sieg.
+          I'm interested in topics like network security, digital forensics, and privacy engineering.
+        </p>
+
+        <div class="hero-buttons">
+          <!-- Put your real CV link here -->
+          <a class="btn btn-primary" href="YOUR_CV_LINK.pdf" target="_blank">Download CV</a>
+          <a class="btn btn-outline" href="#contact">Contact Info</a>
+        </div>
+
+        <div class="socials">
+          <span><a href="YOUR_LINKEDIN_URL" target="_blank">LinkedIn</a></span>
+          <span>·</span>
+          <span><a href="YOUR_GITHUB_URL" target="_blank">GitHub</a></span>
+        </div>
+      </div>
+
+      <div>
+        <!-- Replace with your own image link or leave empty -->
+        <img src="https://via.placeholder.com/220" alt="Profile picture" class="hero-avatar">
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">Get to know more</p>
+    <h2 class="section-title">About Me</h2>
+
+    <div class="about-content">
+      <div>
+        <p>
+          I am a curious and motivated Cyber Security & Privacy student at Hochschule Bonn-Rhein-Sieg.
+          I enjoy learning about practical security, from secure software development to incident response and forensics.
+        </p>
+        <br>
+        <p>
+          I’m currently looking for opportunities such as a working student position or internship where I can apply my
+          technical skills, improve my German in a professional environment, and contribute to real security projects.
+        </p>
+      </div>
+
+      <div>
+        <div class="about-box">
+          <h3>Education</h3>
+          <p><strong>B.Sc. Cyber Security & Privacy</strong></p>
+          <span class="small">Hochschule Bonn-Rhein-Sieg · 5th Semester</span>
+        </div>
+        <div class="about-box">
+          <h3>Languages</h3>
+          <p>Arabic (native), French, English (very good), German (C1 – improving spoken skills).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">Explore my</p>
+    <h2 class="section-title">Experience</h2>
+
+    <div class="grid-2">
+      <!-- Example experience 1 -->
+      <div class="card">
+        <h3>POSITION / ROLE</h3>
+        <span class="small">Company Name · MM/YYYY – MM/YYYY</span>
+        <ul>
+          <li>Short bullet about what you did.</li>
+          <li>Short bullet about tools/technologies you used.</li>
+          <li>Short bullet about what you learned or achieved.</li>
+        </ul>
+      </div>
+
+      <!-- Example experience 2 -->
+      <div class="card">
+        <h3>Student Project / University Work</h3>
+        <span class="small">H-BRS · YYYY</span>
+        <ul>
+          <li>Describe a relevant project: e.g. network security lab, digital forensics assignment, etc.</li>
+          <li>Mention tools: Wireshark, Linux, Python, etc.</li>
+          <li>Mention responsibility: documentation, analysis, reporting.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">My</p>
+    <h2 class="section-title">Skills</h2>
+
+    <div class="skills-columns">
+      <div class="card">
+        <h3>Security & Networking</h3>
+        <div>
+          <span class="skill-tag">Network Security</span>
+          <span class="skill-tag">Digital Forensics</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Wireshark</span>
+          <span class="skill-tag">Basic Pentesting</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Programming</h3>
+        <div>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">C / C++</span>
+          <span class="skill-tag">Bash</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Tools & Other</h3>
+        <div>
+          <span class="skill-tag">Git / GitHub</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">VirtualBox</span>
+          <span class="skill-tag">Burp Suite</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Browse my recent</p>
+    <h2 class="section-title">Projects</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Project Name 1</h3>
+        <span class="small">Short description of the project.</span>
+        <ul>
+          <li>Mention what the project does and why.</li>
+          <li>Technologies: e.g. Python, Flask, SQLite.</li>
+        </ul>
+        <div class="project-links">
+          <a href="GITHUB_LINK_1" target="_blank">GitHub</a>
+          <a href="#" target="_blank">Live Demo</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Project Name 2</h3>
+        <span class="small">Short description of the project.</span>
+        <ul>
+          <li>Mention security / cyber aspect if possible.</li>
+          <li>Technologies: e.g. Java, Spring, Docker.</li>
+        </ul>
+        <div class="project-links">
+          <a href="GITHUB_LINK_2" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES -->
+  <section id="certificates">
+    <p class="section-label">My</p>
+    <h2 class="section-title">Certificates</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Certificate Name</h3>
+        <span class="small">Platform / Organization · YYYY</span>
+        <div class="project-links">
+          <a href="CERTIFICATE_PDF_LINK" target="_blank">View Certificate</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Another Course / Training</h3>
+        <span class="small">Platform / Organization · YYYY</span>
+        <div class="project-links">
+          <a href="#" target="_blank">View Certificate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Get in touch</p>
+    <h2 class="section-title">Contact Me</h2>
+
+    <div class="contact-box">
+      <p>Email:</p>
+      <p><a href="mailto:your_email@example.com">your_email@example.com</a></p>
+      <br>
+      <p>LinkedIn:</p>
+      <p><a href="YOUR_LINKEDIN_URL" target="_blank">YOUR_LINKEDIN_URL</a></p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 YOUR NAME. All rights reserved.
+  </footer>
+
+</body>
+</html>
